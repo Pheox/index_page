@@ -7,7 +7,8 @@
 {% if tags %}
 <ul>
 {% for tag in tags %}
-<li>{{tag.name}}</li>
+
+<li><a href="{{ url_for('filter_by_tag', tag_id=tag.id) }}">{{tag.name}}</a></li>
 
 {% endfor %}
 </ul>
@@ -29,7 +30,7 @@
 
     <tr>
       <td>{{bookmark.name}}</td>
-      <td><a href="http://{{bookmark.url}}">
+      <td><a href="{{bookmark.url}}">
           {{bookmark.url}}</a></td>
 
     </tr>

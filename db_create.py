@@ -15,5 +15,6 @@ else:
 from app.models_dao import BookmarkDAO, TagDAO, BookmarkTagDAO
 
 BookmarkDAO.add_sample_data()
+BookmarkDAO.load_from_file("data/bookmarks.txt")
 TagDAO.add_sample_tags()
-BookmarkTagDAO.add_sample_data()
+BookmarkTagDAO.add_sample_bookmark_tags()

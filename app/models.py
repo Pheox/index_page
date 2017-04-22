@@ -21,7 +21,7 @@ class Tag(db.Model):
 
 
 class BookmarkTag(db.Model):
-  __tablename__ = 'bookmark_page'
+  __tablename__ = 'bookmark_tag'
   bookmark_id = db.Column(db.Integer, db.ForeignKey('bookmark.id'), primary_key=True)
   tag_id = db.Column(db.Integer, db.ForeignKey('tag.id'), primary_key=True)
-  bookmark = db.relationship('Bookmark', backref='bookmark_page')
+  bookmark = db.relationship('Bookmark', backref='bookmark_tag')

@@ -1,0 +1,19 @@
+OpenAlt, https://openalt.cz/
+Volby zo zahranicia, https://github.com/marsher/volby-zo-zahranicia
+sw for electronic ID, https://eidas.minv.sk/TCTokenService/download/index.jsp
+
+Sciolab, https://sciolab.consumerphysics.com/#/login
+print friendly, https://www.printfriendly.com/
+
+Mavenir online email, https://outlook.office.com/owa/
+Mavenir Licensing, http://license.cz.intinfra.com/
+SIF-MONITOR-ALL, http://jenkins.cz.intinfra.com/view/SIF/view/SIF-MONITOR-ALL/
+DISC-MONITOR, http://jenkins.cz.intinfra.com/view/DiSC/view/DiSC-MONITOR/
+Mavenir Book Library, http://portal.intinfra.com/workspace/Brno/public/lib/Pages/libraryContent.aspx
+XMS issues, goo.gl/EuNcB3
+Job descriptions, https://at.acision.com/wiki/display/EN/Job+Description
+personal VMs, https://at.acision.com/wiki/display/SIF/VMs+overview
+Mavenir aportal, https://aportal.intinfra.com/accounts/login/?next=/
+Mavenir finance, https://at.acision.com/wiki/display/Quality2/Finance
+Mavenir policies, https://at.acision.com/wiki/display/EN/Office+Support
+Mavenir personal review, http://talent.comverse.com/
