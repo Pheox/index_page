@@ -22,6 +22,7 @@
     <tr>
       <th>Name</th>
       <th>Url</th>
+      <th></th>
   </thead>
 
   <tbody>
@@ -48,6 +49,14 @@
       <td><a href="{{ url_for('bookmark_edit', bookmark_id=bookmark.id, edit=1) }}">{{bookmark.name}}</a></td>
       <td><a href="{{bookmark.url}}">
           {{bookmark.url}}</a></td>
+
+      <td class="button-cell">
+      <form  action="{{url_for('bookmark_delete', bookmark_id=bookmark.id)}}" method="post">
+        <input type="submit" value="Delete"></input>
+      </form>
+      </td>
+
+
     </tr>
 
     {% endif %}

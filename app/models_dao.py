@@ -25,6 +25,13 @@ class BookmarkDAO(object):
     db.session.commit()
 
   @staticmethod
+  def delete(id):
+    # TODO: delete also mappings
+    bm = Bookmark.query.get(id)
+    db.session.delete(bm)
+    db.session.commit()
+
+  @staticmethod
   def get_tag_bookmarks(tag_id):
     results = db.session.query(Bookmark, BookmarkTag, Tag).\
       join(BookmarkTag).join(Tag).\
@@ -89,4 +96,13 @@ class BookmarkTagDAO(object):
     db.session.add(bm_tag1)
     db.session.add(bm_tag2)
     db.session.add(bm_tag3)
+    db.session.commit()
+
+  @staticmethod
+  def delete_bm(bookmark_id):
+    results = BookmarkTag.query.filter(bookmark_id==bookmark_id).all()
+    print results
+    for result in results:
+      print result
+      db.session.delete(result)
     db.session.commit()
