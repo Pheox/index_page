@@ -48,7 +48,7 @@
     {% else %}
     <tr>
       <td><a href="{{ url_for('bookmark_edit', bookmark_id=bookmark.id, edit=1) }}">{{bookmark.name}}</a></td>
-      <td><a href="{{bookmark.url}}">
+      <td><a target="_blank" href="{{bookmark.url}}">
           {{bookmark.url}}</a></td>
 
       <td class="button-cell">
