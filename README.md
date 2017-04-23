@@ -1,15 +1,16 @@
 Installation
 ------------
-Environment setup
-=================
 $ git clone git@github.com:Pheox/index_page.git
+
 $ cd index_page
+
 $ bash setup.sh
 
 
-Example of production setup (tested on Debian Wheezy)
-=====================================================
 
+Example of production setup (tested on Debian Wheezy)
+-----------------------------------------------------
+```
 FcgidIPCDir /tmp
 AddHandler fcgid-script .fcgi
 
@@ -25,3 +26,4 @@ AddHandler fcgid-script .fcgi
 
   CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
+```
