@@ -15,6 +15,7 @@ class Bookmark(db.Model):
   url = db.Column(db.String(100), index=True, nullable=False)
   note = db.Column(db.String(100), default="")
   tags = db.Column(db.String(100), default="")
+  usage_cnt = db.Column(db.Integer)
 
 
 class Tag(db.Model):

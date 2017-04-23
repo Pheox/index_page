@@ -1,11 +1,12 @@
+
 from app import app
 
 from flask import request, render_template, redirect
-
 from models import Bookmark
 from models_dao import BookmarkDAO, TagDAO, BookmarkTagDAO
-
 from forms import BookmarkEditForm
+
+import webbrowser
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -41,6 +42,12 @@ def bookmark_delete(bookmark_id):
   BookmarkTagDAO.delete_bm(bookmark_id)
   BookmarkDAO.delete(bookmark_id)
   return redirect('/')
+
+# @app.route('/open/<int:bookmark_id>')
+# def open_bookmark(bookmark_id):
+#   webbrowser.open('http://mylink.com')
+
+#   return redirect('/')
 
 #####
 
