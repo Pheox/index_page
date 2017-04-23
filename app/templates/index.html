@@ -28,12 +28,30 @@
     {% if bookmarks %}
     {% for bookmark in bookmarks %}
 
+    {% if bookmark_edit == bookmark.id %}
     <tr>
-      <td>{{bookmark.name}}</td>
-      <td><a href="{{bookmark.url}}">
-          {{bookmark.url}}</a></td>
+      <td colspan="2">
+      <form id="edit-bm-form" action="" method="post" name="bookmark_edit">
+          <p>
+              <span>Name</span>{{edit_form.bm_name(size=15, value=bookmark.name)}}
+              <span>URL</span>{{edit_form.bm_url(size=30, value=bookmark.url)}}
+              <span>Note</span>{{edit_form.bm_note(size=30, value=bookmark.note)}}
+              <span><input class="submit-new" type="submit" value="Save"></span>
+          </p>
+      </form>
+      </td>
 
     </tr>
+
+    {% else %}
+    <tr>
+      <td><a href="{{ url_for('bookmark_edit', bookmark_id=bookmark.id, edit=1) }}">{{bookmark.name}}</a></td>
+      <td><a href="{{bookmark.url}}">
+          {{bookmark.url}}</a></td>
+    </tr>
+
+    {% endif %}
+
 
     {% endfor %}
     {% endif %}

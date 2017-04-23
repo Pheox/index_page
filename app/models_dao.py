@@ -17,6 +17,14 @@ class BookmarkDAO(object):
     return results
 
   @staticmethod
+  def edit(id, name, url, note):
+    bm = Bookmark.query.get(id)
+    bm.name = name
+    bm.url = url
+    bm.note = note
+    db.session.commit()
+
+  @staticmethod
   def get_tag_bookmarks(tag_id):
     results = db.session.query(Bookmark, BookmarkTag, Tag).\
       join(BookmarkTag).join(Tag).\

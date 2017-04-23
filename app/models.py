@@ -11,13 +11,13 @@ class Bookmark(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(100), index=True, nullable=False)
   url = db.Column(db.String(100), index=True, nullable=False)
-  description = db.Column(db.String(100), index=True)
+  note = db.Column(db.String(100), default="")
 
 class Tag(db.Model):
   __tablename__ = 'tag'
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(100), index=True, nullable=False)
-  description = db.Column(db.String(100), index=True)
+  note = db.Column(db.String(100), default="")
 
 
 class BookmarkTag(db.Model):
