@@ -1,5 +1,4 @@
 #!/bin/sh
 
-rm app.db
+rm -f app.db
 python db_create.py
-
