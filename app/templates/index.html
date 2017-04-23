@@ -31,12 +31,13 @@
 
     {% if bookmark_edit == bookmark.id %}
     <tr>
-      <td colspan="2">
+      <td colspan="3">
       <form id="edit-bm-form" action="" method="post" name="bookmark_edit">
           <p>
               <span>Name</span>{{edit_form.bm_name(size=15, value=bookmark.name)}}
               <span>URL</span>{{edit_form.bm_url(size=30, value=bookmark.url)}}
               <span>Note</span>{{edit_form.bm_note(size=30, value=bookmark.note)}}
+              <span>Tags</span>{{edit_form.bm_tags(size=30, value=bookmark.tags)}}
               <span><input class="submit-new" type="submit" value="Save"></span>
           </p>
       </form>

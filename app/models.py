@@ -4,6 +4,8 @@ from datetime import datetime
 """
 List of models:
 - Bookmark
+- Tag
+- BookmarkTag
 """
 
 class Bookmark(db.Model):
@@ -12,6 +14,8 @@ class Bookmark(db.Model):
   name = db.Column(db.String(100), index=True, nullable=False)
   url = db.Column(db.String(100), index=True, nullable=False)
   note = db.Column(db.String(100), default="")
+  tags = db.Column(db.String(100), default="")
+
 
 class Tag(db.Model):
   __tablename__ = 'tag'
@@ -24,4 +28,3 @@ class BookmarkTag(db.Model):
   __tablename__ = 'bookmark_tag'
   bookmark_id = db.Column(db.Integer, db.ForeignKey('bookmark.id'), primary_key=True)
   tag_id = db.Column(db.Integer, db.ForeignKey('tag.id'), primary_key=True)
-  bookmark = db.relationship('Bookmark', backref='bookmark_tag')

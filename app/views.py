@@ -45,5 +45,8 @@ def bookmark_delete(bookmark_id):
 #####
 
 def form_submit_edit(bookmark_id, form):
-  BookmarkDAO.edit(bookmark_id, form.bm_name.data, form.bm_url.data, form.bm_note.data)
+  BookmarkDAO.edit(bookmark_id, form.bm_name.data, form.bm_url.data,
+    form.bm_note.data, form.bm_tags.data)
+  BookmarkTagDAO.update_tags(bookmark_id, form.bm_tags.data)
+
   return True

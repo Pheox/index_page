@@ -17,11 +17,12 @@ class BookmarkDAO(object):
     return results
 
   @staticmethod
-  def edit(id, name, url, note):
+  def edit(id, name, url, note, tags):
     bm = Bookmark.query.get(id)
     bm.name = name
     bm.url = url
     bm.note = note
+    bm.tags = tags
     db.session.commit()
 
   @staticmethod
@@ -106,3 +107,20 @@ class BookmarkTagDAO(object):
       print result
       db.session.delete(result)
     db.session.commit()
+
+  @staticmethod
+  def update_tags(bookmark_id, tags):
+    tags = set([tag.strip() for tag in tags.split()])
+
+    # TODO: create tags if needed
+    BookmarkTagDAO.delete_bm(bookmark_id)
+
+    for tag in tags:
+      tag_obj = Tag.query.filter(Tag.name==tag).all()
+      if not tag_obj:
+        db.session.add(Tag(name=tag))
+        db.session.commit()
+      tag_id = Tag.query.filter(Tag.name==tag).all()[0].id
+      print "adding " + str(bookmark_id) + str(tag_id)
+      db.session.add(BookmarkTag(bookmark_id=bookmark_id, tag_id=tag_id))
+      db.session.commit()
