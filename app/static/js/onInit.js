@@ -20,8 +20,8 @@ function finish() {
 
 /* Handlers */
 function openTab(url) {
-    var win = window.open(url, '_blank');
-    win.focus();
+
+    window.open(url, '_blank');
 }
 
 

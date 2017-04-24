@@ -12,8 +12,6 @@ class BookmarkDAO(object):
   @staticmethod
   def get_all():
     results = Bookmark.query.all()
-    # for res in results:
-    #   print res.name
     return results
 
   @staticmethod
@@ -45,10 +43,7 @@ class BookmarkDAO(object):
   def get_most_frequent():
     results = db.session.query(Bookmark).\
         order_by(Bookmark.usage_cnt.desc()).all()
-
-    # results = [res[0] for res in results]
     results = results[:5]
-    print results
     return results
 
   @staticmethod
@@ -121,9 +116,7 @@ class BookmarkTagDAO(object):
   @staticmethod
   def delete_bm(bookmark_id):
     results = BookmarkTag.query.filter(bookmark_id == bookmark_id).all()
-    print results
     for result in results:
-      print result
       db.session.delete(result)
     db.session.commit()
 
@@ -140,6 +133,5 @@ class BookmarkTagDAO(object):
         db.session.add(Tag(name=tag))
         db.session.commit()
       tag_id = Tag.query.filter(Tag.name == tag).all()[0].id
-      print "adding " + str(bookmark_id) + str(tag_id)
       db.session.add(BookmarkTag(bookmark_id=bookmark_id, tag_id=tag_id))
       db.session.commit()
