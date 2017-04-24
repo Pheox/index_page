@@ -47,9 +47,16 @@
 
     {% else %}
     <tr>
-      <td><a href="{{ url_for('bookmark_edit', bookmark_id=bookmark.id, edit=1) }}">{{bookmark.name}}</a></td>
-      <td><a target="_blank" href="{{bookmark.url}}">
-          {{bookmark.url}}</a></td>
+      <td>
+        <a href="{{ url_for('bookmark_edit', bookmark_id=bookmark.id, edit=1) }}">
+        {{bookmark.name}}</a>
+      </td>
+
+      <td><a target="_blank" onclick=openTab("{{bookmark.url}}")
+          href="{{ url_for('bookmark_count', bookmark_id=bookmark.id) }}">
+          {{bookmark.url}}
+        </a>
+      </td>
 
       <td class="button-cell">
       <form  action="{{url_for('bookmark_delete', bookmark_id=bookmark.id)}}" method="post">
@@ -65,6 +72,60 @@
 
     {% endfor %}
     {% endif %}
+
+    {% if bookmarks_frequent %}
+    <tr><td <td colspan="3"></td></tr>
+
+
+ {% for bookmark in bookmarks_frequent %}
+
+ {% if bookmark_edit == bookmark.id %}
+ <tr>
+   <td colspan="3">
+   <form id="edit-bm-form" action="" method="post" name="bookmark_edit">
+       <p>
+           <span>Name</span>{{edit_form.bm_name(size=15, value=bookmark.name)}}
+           <span>URL</span>{{edit_form.bm_url(size=30, value=bookmark.url)}}
+           <span>Note</span>{{edit_form.bm_note(size=30, value=bookmark.note)}}
+           <span>Tags</span>{{edit_form.bm_tags(size=30, value=bookmark.tags)}}
+           <span><input class="submit-new" type="submit" value="Save"></span>
+       </p>
+   </form>
+   </td>
+
+ </tr>
+
+ {% else %}
+ <tr>
+   <td>
+     <a href="{{ url_for('bookmark_edit', bookmark_id=bookmark.id, edit=1) }}">
+     {{bookmark.name}}</a>
+   </td>
+
+   <td><a target="_blank" onclick=openTab("{{bookmark.url}}")
+       href="{{ url_for('bookmark_count', bookmark_id=bookmark.id) }}">
+       {{bookmark.url}}
+     </a>
+   </td>
+
+   <td class="button-cell">
+   <form  action="{{url_for('bookmark_delete', bookmark_id=bookmark.id)}}" method="post">
+     <input type="submit" value="Delete"></input>
+   </form>
+   </td>
+
+
+ </tr>
+
+ {% endif %}
+
+
+ {% endfor %}
+
+
+
+    {% endif %}
+
 
   </tbody>
 </table>

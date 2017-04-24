@@ -16,8 +16,11 @@ def bookmarks(tag_id=None, bm_edit=None, edit_form=None):
 
   if tag_id:
     bookmarks = BookmarkDAO.get_tag_bookmarks(tag_id)
+
+  most_frequent = BookmarkDAO.get_most_frequent()
+
   return render_template('index.html', bookmarks=bookmarks, tags=tags,
-    bookmark_edit=bm_edit, edit_form=edit_form)
+    bookmark_edit=bm_edit, edit_form=edit_form, bookmarks_frequent=most_frequent)
 
 
 @app.route('/show/<int:tag_id>',
@@ -43,13 +46,13 @@ def bookmark_delete(bookmark_id):
   BookmarkDAO.delete(bookmark_id)
   return redirect('/')
 
-# @app.route('/open/<int:bookmark_id>')
-# def open_bookmark(bookmark_id):
-#   webbrowser.open('http://mylink.com')
+@app.route('/count/<int:bookmark_id>', methods=['GET', 'POST'])
+def bookmark_count(bookmark_id):
+  BookmarkDAO.inc_counter(bookmark_id)
+  return redirect('/')
 
-#   return redirect('/')
 
-#####
+### Helpers
 
 def form_submit_edit(bookmark_id, form):
   BookmarkDAO.edit(bookmark_id, form.bm_name.data, form.bm_url.data,

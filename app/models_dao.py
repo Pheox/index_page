@@ -42,6 +42,23 @@ class BookmarkDAO(object):
     return results
 
   @staticmethod
+  def get_most_frequent():
+    results = db.session.query(Bookmark).\
+      order_by(Bookmark.usage_cnt.desc()).all()
+
+    # results = [res[0] for res in results]
+    results = results[:5]
+    print results
+    return results
+
+  @staticmethod
+  def inc_counter(bookmark_id):
+    bookmark = Bookmark.query.get(bookmark_id)
+    if bookmark:
+      bookmark.usage_cnt = bookmark.usage_cnt + 1
+      db.session.commit()
+
+  @staticmethod
   def add_sample_data():
     bm1 = Bookmark(id=1, name="bm1", url="www.bm1.com")
     bm2 = Bookmark(id=2, name="bm2", url="www.bm2.com")
