@@ -8,6 +8,7 @@ List of models:
 - BookmarkTag
 """
 
+
 class Bookmark(db.Model):
   __tablename__ = 'bookmark'
   id = db.Column(db.Integer, primary_key=True)
@@ -27,5 +28,7 @@ class Tag(db.Model):
 
 class BookmarkTag(db.Model):
   __tablename__ = 'bookmark_tag'
-  bookmark_id = db.Column(db.Integer, db.ForeignKey('bookmark.id'), primary_key=True)
-  tag_id = db.Column(db.Integer, db.ForeignKey('tag.id'), primary_key=True)
+  bookmark_id = db.Column(db.Integer, db.ForeignKey('bookmark.id'),
+    primary_key=True)
+  tag_id = db.Column(db.Integer, db.ForeignKey('tag.id'),
+    primary_key=True)

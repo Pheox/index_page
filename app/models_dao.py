@@ -35,8 +35,8 @@ class BookmarkDAO(object):
   @staticmethod
   def get_tag_bookmarks(tag_id):
     results = db.session.query(Bookmark, BookmarkTag, Tag).\
-      join(BookmarkTag).join(Tag).\
-      filter(BookmarkTag.tag_id == tag_id)
+        join(BookmarkTag).join(Tag).\
+        filter(BookmarkTag.tag_id == tag_id)
 
     results = [res[0] for res in results]
     return results
@@ -44,7 +44,7 @@ class BookmarkDAO(object):
   @staticmethod
   def get_most_frequent():
     results = db.session.query(Bookmark).\
-      order_by(Bookmark.usage_cnt.desc()).all()
+        order_by(Bookmark.usage_cnt.desc()).all()
 
     # results = [res[0] for res in results]
     results = results[:5]
@@ -73,7 +73,7 @@ class BookmarkDAO(object):
     bookmarks = []
     id_start = 100
 
-    with open(filename,'r') as fh:
+    with open(filename, 'r') as fh:
       content = fh.read()
 
     cnt = 0
@@ -83,9 +83,11 @@ class BookmarkDAO(object):
       if len(items) < 2:
         continue
       cnt += 1
-      bm = Bookmark(id=id_start+cnt, name=items[0].strip(), url=items[1].strip())
+      bm = Bookmark(id=id_start + cnt, name=items[0].strip(),
+                    url=items[1].strip())
       db.session.add(bm)
     db.session.commit()
+
 
 class TagDAO(object):
 
@@ -118,7 +120,7 @@ class BookmarkTagDAO(object):
 
   @staticmethod
   def delete_bm(bookmark_id):
-    results = BookmarkTag.query.filter(bookmark_id==bookmark_id).all()
+    results = BookmarkTag.query.filter(bookmark_id == bookmark_id).all()
     print results
     for result in results:
       print result
@@ -133,11 +135,11 @@ class BookmarkTagDAO(object):
     BookmarkTagDAO.delete_bm(bookmark_id)
 
     for tag in tags:
-      tag_obj = Tag.query.filter(Tag.name==tag).all()
+      tag_obj = Tag.query.filter(Tag.name == tag).all()
       if not tag_obj:
         db.session.add(Tag(name=tag))
         db.session.commit()
-      tag_id = Tag.query.filter(Tag.name==tag).all()[0].id
+      tag_id = Tag.query.filter(Tag.name == tag).all()[0].id
       print "adding " + str(bookmark_id) + str(tag_id)
       db.session.add(BookmarkTag(bookmark_id=bookmark_id, tag_id=tag_id))
       db.session.commit()
