@@ -1,7 +1,7 @@
 
 from app import app
 
-from flask import request, render_template, redirect
+from flask import request, render_template, redirect, make_response
 from models import Bookmark
 from models_dao import BookmarkDAO, TagDAO, BookmarkTagDAO
 from forms import BookmarkEditForm
@@ -52,6 +52,20 @@ def bookmark_delete(bookmark_id):
 def bookmark_count(bookmark_id):
   BookmarkDAO.inc_counter(bookmark_id)
   return redirect('/')
+
+
+@app.route('/export', methods=['GET', 'POST'])
+def export():
+  bookmarks = BookmarkDAO.get_all()
+  csv = ""
+  for bm in bookmarks:
+    bm_list = [bm.name, bm.url]
+    csv += ",".join(bm_list)+"\n"
+
+  response = make_response(csv)
+
+  response.headers["Content-Disposition"] = "attachment; filename=bookmarks.csv"
+  return response
 
 
 # Helpers
