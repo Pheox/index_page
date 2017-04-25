@@ -20,7 +20,6 @@ function finish() {
 
 /* Handlers */
 function openTab(url) {
-
     window.open(url, '_blank');
 }
 

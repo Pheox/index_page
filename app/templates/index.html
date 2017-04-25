@@ -17,7 +17,7 @@
 </div>
 
 
- <table id="table-all-bookmarks">
+<table id="table-all-bookmarks">
   <thead>
     <tr>
       <th>Name</th>
@@ -52,7 +52,7 @@
         {{bookmark.name}}</a>
       </td>
 
-      <td><a target="_blank" onclick=openTab("{{bookmark.url}}")
+      <td><a onclick=openTab("{{bookmark.url}}")
           href="{{ url_for('bookmark_count', bookmark_id=bookmark.id) }}">
           {{bookmark.url}}
         </a>
@@ -81,17 +81,17 @@
 
  {% if bookmark_edit == bookmark.id %}
  <tr>
-   <td colspan="3">
-   <form id="edit-bm-form" action="" method="post" name="bookmark_edit">
-       <p>
-           <span>Name</span>{{edit_form.bm_name(size=15, value=bookmark.name)}}
-           <span>URL</span>{{edit_form.bm_url(size=30, value=bookmark.url)}}
-           <span>Note</span>{{edit_form.bm_note(size=30, value=bookmark.note)}}
-           <span>Tags</span>{{edit_form.bm_tags(size=30, value=bookmark.tags)}}
-           <span><input class="submit-new" type="submit" value="Save"></span>
-       </p>
-   </form>
-   </td>
+  <td colspan="3">
+  <form id="edit-bm-form" action="" method="post" name="bookmark_edit">
+    <p>
+       <span>Name</span>{{edit_form.bm_name(size=15, value=bookmark.name)}}
+       <span>URL</span>{{edit_form.bm_url(size=30, value=bookmark.url)}}
+       <span>Note</span>{{edit_form.bm_note(size=30, value=bookmark.note)}}
+       <span>Tags</span>{{edit_form.bm_tags(size=30, value=bookmark.tags)}}
+       <span><input class="submit-new" type="submit" value="Save"></span>
+    </p>
+  </form>
+  </td>
 
  </tr>
 
@@ -102,7 +102,7 @@
      {{bookmark.name}}</a>
    </td>
 
-   <td><a target="_blank" onclick=openTab("{{bookmark.url}}")
+   <td><a onclick=openTab("{{bookmark.url}}")
        href="{{ url_for('bookmark_count', bookmark_id=bookmark.id) }}">
        {{bookmark.url}}
      </a>
@@ -115,19 +115,16 @@
    </td>
 
 
- </tr>
+</tr>
 
- {% endif %}
+{% endif %}
 
+{% endfor %}
 
- {% endfor %}
-
-
-
-    {% endif %}
+{% endif %}
 
 
-  </tbody>
+</tbody>
 </table>
 
 {% endblock %}
